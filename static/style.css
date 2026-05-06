@@ -1,0 +1,892 @@
+/* Reset CSS */
+/* Menghapus margin & padding default, dan membuat box model lebih stabil */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables */
+/* Menyimpan warna utama supaya mudah diganti dari satu tempat saja */
+:root {
+    --primary-color: #333333;   /* Warna dasar gelap untuk navbar dan teks utama */
+    --secondary-color: #555555; /* Warna abu-abu sedang */
+    --accent-color: #007bff;    /* Warna biru sebagai aksen atau tombol */
+    --light-gray: #f5f5f5;      /* Warna abu muda untuk latar belakang section */
+    --white: #ffffff;           /* Warna putih */
+    --dark-gray: #222222;       /* Warna abu gelap untuk teks utama */
+}
+
+/* Typography */
+/* Atur font utama dan warna dasar seluruh halaman */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;                 /* Spasi antarbaris agar mudah dibaca */
+    color: var(--dark-gray);          /* Warna teks utama */
+    background-color: var(--white);   /* Warna latar belakang halaman */
+}
+
+/* Atur tampilan heading agar tebal dan memiliki jarak bawah */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Container */
+/* Membatasi lebar konten agar tetap rapi di tengah */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;     /* Biar konten rata tengah */
+    padding: 0 15px;
+}
+
+/* ===== NAVBAR FIX — Rapi & Stabil ===== */
+/* Mengatur navbar agar tetap di atas, punya bayangan, dan responsif */
+.navbar {
+    background-color: var(--primary-color);
+    padding: 1rem 2rem;
+    position: sticky;          /* Menempel di atas saat discroll */
+    top: 10px;
+    margin: 0 auto;
+    width: 95%;
+    max-width: 1200px;
+    border-radius: 15px;
+    z-index: 1000;             /* Supaya navbar selalu di depan elemen lain */
+    transition: all 0.3s ease; /* Efek halus saat berubah bentuk */
+}
+
+/* Saat user scroll, ubah sedikit tampilan navbar */
+.navbar.scrolled {
+    background-color: rgba(51, 51, 51, 0.95);
+    backdrop-filter: blur(6px); /* Efek blur transparan */
+    padding: 0.6rem 2rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+}
+
+/* Mengatur isi dalam navbar jadi sebaris dan rata kanan-kiri */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Logo di kiri navbar */
+.nav-logo a {
+    display: flex;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--white);
+    text-decoration: none;
+}
+
+/* Gambar logo */
+.logo-img {
+    height: 45px;
+    width: auto;
+    margin-right: 10px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Menu Navigasi */
+/* Mengatur link navigasi agar sejajar dan memiliki jarak antar item */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* Jarak antar menu */
+}
+
+/* Tampilan link navigasi */
+.nav-link {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+}
+
+/* Efek hover dan aktif */
+.nav-link:hover, .nav-link.active {
+    color: var(--accent-color);
+}
+
+/* Garis bawah animasi saat hover */
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Search & Cart */
+/* Mengatur kolom pencarian */
+.search-container input {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    width: 200px;
+}
+
+/* Warna dan posisi ikon keranjang */
+.cart-icon a {
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Hamburger untuk tampilan mobile */
+.hamburger {
+    display: none; /* disembunyikan di desktop */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+/* Garis-garis hamburger */
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--white);
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+/* Bagian awal halaman, biasanya gambar besar dan teks utama */
+.hero {
+    margin-top: -80px;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+        url('../img/46c4cfd82657199c01f444710ee56d0e.jpg');
+    background-size: cover;
+    background-position: center;
+    height: calc(100vh + 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInHero 1.5s ease-in-out; /* animasi muncul halus */
+}
+
+/* Tambahan pseudo-elemen untuk meniru background */
+.hero::before {
+    content: "";                 
+    position: absolute;          
+    top: 0; left: 0; right: 0; bottom: 0; 
+    background: inherit;         
+    background-size: cover;
+    background-position: center;
+    z-index: -1;                 
+}
+
+/* Judul hero */
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.4); /* bayangan biar teks lebih jelas */
+}
+
+/* Paragraf hero */
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+}
+
+/* Tombol utama di hero */
+.hero .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Efek hover tombol */
+.hero .btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+/* Buttons */
+/* Gaya umum tombol di seluruh halaman */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+/* Efek hover tombol */
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Section Title */
+/* Bagian judul setiap section (fitur, layanan, dst) */
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title h1, .section-title h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+/* Features Section */
+/* Mengatur area fitur agar punya padding dan background abu muda */
+.features {
+    padding: 5rem 0;
+    background-color: var(--light-gray);
+}
+
+/* Ikon fitur */
+.feature-icon {
+    width: 65px;
+    height: auto;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 2px 4px rgba(117, 199, 240, 0.808));
+    transition: transform 0.3s ease;
+}
+
+/* Grid fitur responsif */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Kartu fitur */
+.feature-item {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(15, 51, 75, 0.884);
+    transition: all 0.4s ease;
+    opacity: 0; /* efek muncul saat discroll */
+    transform: translateY(40px);
+}
+
+/* Saat elemen fitur muncul di layar */
+.feature-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s ease;
+}
+
+/* Efek hover kartu fitur */
+.feature-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(29, 26, 26, 0.897);
+}
+
+/* Judul fitur */
+.feature-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* About Section */
+.about {
+    padding: 5rem 0;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.about-text h2 {
+    color: var(--primary-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.about-text h2:first-child {
+    margin-top: 0;
+}
+
+/* Products Section */
+.products {
+    padding: 5rem 0;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background-color: var(--dark-gray);
+    color: var(--white);
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-img {
+    width: 100%;
+    height: 200px;
+    background-color: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.product-info h3 {
+    margin-bottom: 0.5rem;
+}
+
+.product-detail-img {
+    width: 98%;
+    height: 400px;
+    background-color: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.product-detail-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contact Page */
+.contact-container {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.contact-header h1 {
+    font-size: 2.5rem;
+    color: #0d47a1;
+    margin-bottom: 0.5rem;
+}
+
+.contact-header p {
+    color: #555;
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Form Styles */
+.contact-form {
+    flex: 1 1 400px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.contact-form h2 {
+    font-size: 1.5rem;
+    color: #0d47a1;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #0d47a1;
+    box-shadow: 0 0 6px rgba(13, 71, 161, 0.2);
+    outline: none;
+}
+
+/* Tombol Kirim */
+.btn-submit {
+    background-color: #0d47a1;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #1565c0;
+    transform: translateY(-2px);
+}
+
+/* Map */
+.map-container {
+    flex: 1 1 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    border: 0;
+}
+
+/* Form Message */
+.form-message {
+    display: none;
+    margin-top: 1rem;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-align: center;
+    transition: opacity 0.5s ease;
+}
+
+.form-message.success {
+    display: block;
+    background-color: #4caf50;
+    color: #fff;
+    opacity: 1;
+    animation: fadeInOut 4s ease-in-out forwards;
+}
+
+.form-message.error {
+    display: block;
+    background-color: #f44336;
+    color: #fff;
+    opacity: 1;
+    animation: fadeInOut 4s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-5px); }
+    10%, 90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-5px); }
+}
+
+/* Developer Section */
+/* Developer Section */
+.developer {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.developers-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.developer-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+.developer-card {
+    text-align: center;
+    background: white;
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.developer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), #6c63ff);
+}
+
+.developer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.developer-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1.5rem;
+    background-color: #f1f3f4;
+    border: 4px solid #e9ecef;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.developer-card:hover .developer-img {
+    transform: scale(1.05);
+    border-color: var(--accent-color);
+}
+
+.developer-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.developer-card:hover .developer-img img {
+    transform: scale(1.1);
+}
+
+.developer-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.developer-card a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.developer-card a:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #1e1e1e, #2b2b2b, #0d47a1);
+    color: #f0f0f0;
+    text-align: center;
+    padding: 2.5rem 1rem;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.4px;
+    line-height: 1.7;
+    position: relative;
+}
+
+.footer-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.footer-info p {
+    margin: 0.4rem 0;
+    color: #cccccc;
+    transition: color 0.3s ease;
+}
+
+.footer-info p:hover {
+    color: #ffffff;
+}
+
+.footer-dev {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #aaaaaa;
+}
+
+.footer-dev .dev-name {
+    color: #4dabf7;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.footer-dev .dev-name:hover {
+    color: #00e5ff;
+    text-shadow: 0 0 6px #00e5ff;
+}
+
+.footer-dev .subject {
+    color: #ffeb3b;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer-dev .subject:hover {
+    color: #fff176;
+}
+
+/* Product Modal */
+.product-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1100;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--white);
+    border-radius: 5px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--dark-gray);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+/* Cart Sidebar */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 350px;
+    height: 100%;
+    background-color: var(--white);
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1200;
+    transition: right 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-sidebar.active {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-header h3 {
+    margin: 0;
+}
+
+.cart-header button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.cart-items {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item-info h4 {
+    margin: 0 0 0.5rem;
+}
+
+.cart-item-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+.cart-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cart-item-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--accent-color);
+}
+
+.cart-total {
+    padding: 1.5rem;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+.cart-total p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1300;
+    display: none;
+}
+
+/* Order Form Section */
+.order-form {
+    padding: 3rem 0;
+    background-color: var(--light-gray);
+}
+
+/* Media Query untuk Mobile */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .search-container input {
+        width: 150px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .about-content,
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-sidebar {
+        width: 300px;
+    }
+}
